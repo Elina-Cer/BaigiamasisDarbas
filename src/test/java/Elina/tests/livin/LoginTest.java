@@ -7,13 +7,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTest extends TestBase {
+
+
     @BeforeMethod
     @Override
     public void setUp() {
-        super.setUp();
-        LoginPage.open(
-                "https://www.livinn.lt/login");
+        LoginPage.open();
         LoginPage.clickBottomCookies();
+
     }
 
     @Test

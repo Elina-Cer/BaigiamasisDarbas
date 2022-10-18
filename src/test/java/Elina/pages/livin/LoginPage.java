@@ -4,8 +4,8 @@ import Elina.pages.Common;
 import Elina.pages.Locators;
 
 public class LoginPage {
-    public static void open(String url) {
-        Common.openUrl(url);
+    public static void open() {
+        Common.openUrl("https://www.livinn.lt");
     }
 
     public static void sleep(int millis) {
