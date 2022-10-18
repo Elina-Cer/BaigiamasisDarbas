@@ -32,8 +32,14 @@ public class LoginPage {
     }
 
     public static void clickBottomCookies() {
-        Common.clickElement(
-                Locators.Livin.Login.cookiesAccept);
+
+        try {
+            Common.waitForElementWithVisibilityChange(Locators.Livin.Login.cookiesAccept);
+            Common.clickElement(Locators.Livin.Login.cookiesAccept);
+        } catch (Exception e) {
+            System.out.println("UUUUPPPPSSS!");
+        }
+
     }
 
     public static String readMessage() {

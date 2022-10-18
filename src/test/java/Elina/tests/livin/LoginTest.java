@@ -13,8 +13,8 @@ public class LoginTest extends TestBase {
         super.setUp();
         LoginPage.open(
                 "https://www.livinn.lt/login");
+        LoginPage.clickBottomCookies();
     }
-
 
     @Test
     private void loginTest() {
@@ -32,6 +32,12 @@ public class LoginTest extends TestBase {
 
         actualText = LoginPage.readMessage();
 
+        System.out.println( String.format(
+                "Actual [%s]; Expected [%s]",
+                actualText,
+                expectedText
+        ));
+
         Assert.assertTrue(
                 actualText.contains(expectedText),
                 String.format(
@@ -40,8 +46,5 @@ public class LoginTest extends TestBase {
                         expectedText
                 )
         );
-
-
     }
 }
-
