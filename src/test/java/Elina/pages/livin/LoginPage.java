@@ -8,20 +8,20 @@ public class LoginPage {
         Common.openUrl(url);
     }
 
-    //public static void sleep(int millis) {
-        //Common.sleep(millis);
-   // }
+    public static void sleep(int millis) {
+        Common.sleep(millis);
+    }
 
-    public static void enterElPastas(String expectedElPastas) {
+    public static void enterElPastas(String ElPastas) {
         Common.sendKeysToElement(
-                expectedElPastas,
+                ElPastas,
                 Locators.Livin.Login.inputElPastas
         );
     }
 
-    public static void enterSlaptazodis(String expectedSlaptazodis) {
+    public static void enterSlaptazodis(String Slaptazodis) {
         Common.sendKeysToElement(
-                expectedSlaptazodis,
+                Slaptazodis,
                 Locators.Livin.Login.inputSlaptazodis
         );
     }
@@ -31,9 +31,14 @@ public class LoginPage {
                 Locators.Livin.Login.buttonPrisijungti);
     }
 
-    public static String readMessageElPastas() {
+    public static void clickBottomCookies() {
+        Common.clickElement(
+                Locators.Livin.Login.cookiesAccept);
+    }
+
+    public static String readMessage() {
         return Common.getElementText(
-                Locators.Livin.Login.inputElPastas);
+                Locators.Livin.Login.headerManoPaskyra);
     }
 
 }
