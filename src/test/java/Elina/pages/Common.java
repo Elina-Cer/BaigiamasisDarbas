@@ -1,14 +1,22 @@
 package Elina.pages;
 
 import Elina.utils.Driver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
 
 public class Common {
+
     public static void setUpDriver() {
         Driver.setDriver();
     }
 
     public static void openUrl(String url) {
-        Driver.openUrl(url);
+        Driver.getDriver().get(url);
     }
 
     public static void closeDriver() {
@@ -21,4 +29,41 @@ public class Common {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }}
+    }
+
+    public static WebElement getElement(By locator) {
+        return Driver.getDriver().findElement(locator);
+    }
+
+    public static List<WebElement> getElements(By locator) {
+        return Driver.getDriver().findElements(locator);
+    }
+
+    public static void sendKeysToElement(String keys, By locator) {
+        getElement(locator).sendKeys(keys);
+    }
+
+    public static void clickElement(By locator) {
+        getElement(locator).click();
+    }
+
+    public static String getElementText(By locator) {
+        return getElement(locator).getText();
+    }
+
+
+    public static void waitForElementToBeClickable(By locator) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(8));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public static void waitForElementWithChangeColorAfter(By locator, String attributeName, String attributeValue) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(8));
+        wait.until(ExpectedConditions.attributeContains(locator, attributeName, attributeValue));
+    }
+
+    public static void waitForElementWithVisibilityChange(By locator) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(8));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+}

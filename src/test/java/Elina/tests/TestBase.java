@@ -1,19 +1,19 @@
 package Elina.tests;
-
+import Elina.pages.Common;
 import Elina.pages.livin.LoginPage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class TestBase {
     @BeforeMethod
-    private void setUp() {
-        LoginPage.setup();
-        LoginPage.open("https://www.livinn.lt/login");
+    public void setUp() {
+        Common.setUpDriver();
     }
 
-
-    @AfterMethod
-    private void tearDown() {
-        LoginPage.close();
-    }
+   // @AfterMethod
+    //public void tearDown() {
+       // Common.closeDriver();
+   // }
 }
+
+

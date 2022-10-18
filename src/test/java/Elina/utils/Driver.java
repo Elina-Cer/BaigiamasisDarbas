@@ -8,26 +8,25 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.time.Duration;
 
 public class Driver {
-    private static WebDriver driver;
+
+    //    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static void setDriver() {
         WebDriverManager.chromedriver().setup();
 
-        driver = new ChromeDriver(setUpOptions());
-        driver.manage().deleteAllCookies();
+
+        driver.set(new ChromeDriver(setUpOptions()));
+        driver.get().manage().deleteAllCookies();
+        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
 
     public static WebDriver getDriver() {
-        return driver;
-    }
-
-    public static void openUrl(String url) {
-        driver.get(url);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        return driver.get();
     }
 
     public static void close() {
-        driver.quit();
+        driver.get().quit();
     }
 
     private static ChromeOptions setUpOptions() {
@@ -38,6 +37,3 @@ public class Driver {
         return options;
     }
 }
-
-
-
