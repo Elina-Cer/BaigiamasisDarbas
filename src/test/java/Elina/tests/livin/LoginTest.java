@@ -18,7 +18,7 @@ public class LoginTest extends TestBase {
     }
 
     @Test
-    private void loginTest() {
+    private void PositiveLoginTest() {
         String expectedText = "Mano paskyra";
         String actualText = "";
 
@@ -29,9 +29,9 @@ public class LoginTest extends TestBase {
         LoginPage.enterElPastas(ElPastas);
         LoginPage.enterSlaptazodis(Slaptazodis);
         LoginPage.clickBottomPrisijungti();
-        LoginPage.clickBottomCookies();
 
-        actualText = LoginPage.readMessage();
+
+        actualText = LoginPage.readLoginMessage();
 
         System.out.println( String.format(
                 "Actual [%s]; Expected [%s]",
@@ -47,5 +47,22 @@ public class LoginTest extends TestBase {
                         expectedText
                 )
         );
+    }
+    @Test
+    private void NegativeLoginTest() {
+        String expectedText = "Prisijungti nepavyko. Pasitikrinkite ar teisingai įvedėte prisijungimo duomenis.";
+        String actualText = "";
+
+        String ElPastas = "elina.cerniavskaja@gmail.com";
+        String Slaptazodis = "NotPassword";
+
+        LoginPage.enterElPastas(ElPastas);
+        LoginPage.enterSlaptazodis(Slaptazodis);
+        LoginPage.clickBottomPrisijungti();
+
+        actualText = LoginPage.readLoginMessageError();
+
+        Assert.assertEquals(actualText, expectedText);
+
     }
 }

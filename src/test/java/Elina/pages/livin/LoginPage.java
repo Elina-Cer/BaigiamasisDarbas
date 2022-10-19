@@ -5,7 +5,7 @@ import Elina.pages.Locators;
 
 public class LoginPage {
     public static void open() {
-        Common.openUrl("https://www.livinn.lt");
+        Common.openUrl("https://www.livinn.lt/login");
     }
 
     public static void sleep(int millis) {
@@ -42,9 +42,12 @@ public class LoginPage {
 
     }
 
-    public static String readMessage() {
+    public static String readLoginMessage() {
         return Common.getElementText(
                 Locators.Livin.Login.headerManoPaskyra);
     }
-
+    public static String readLoginMessageError() {
+        return Common.getElementText(
+                Locators.Livin.Login.loginError);
+    }
 }

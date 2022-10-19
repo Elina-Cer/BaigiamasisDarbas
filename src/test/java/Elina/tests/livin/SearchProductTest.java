@@ -11,17 +11,17 @@ public class SearchProductTest extends TestBase {
     @Override
     public void setUp() {
         super.setUp();
-
     }
 
     @Test
     private void searchProductTest() {
-        String Product = "Arbata";
+        String expectedText = "Extra virgin alyvuogių aliejus";
+        String actualText = "";
+        String Product = "Aliejus";
 
-        SearchProductPage.clickBottomSearch();
-        SearchProductPage.clickBottomCookies();
+
         SearchProductPage.enterProduct(Product);
-
+        SearchProductPage.clickSearchProduct();
     }
 
 
