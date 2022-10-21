@@ -1,6 +1,6 @@
-package Elina.tests.livin;
+package Elina.tests.flowyy;
 
-import Elina.pages.livin.LoginPage;
+import Elina.pages.flowyy.LoginPage;
 import Elina.tests.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -13,22 +13,22 @@ public class LoginTest extends TestBase {
     @Override
     public void setUp() {
         LoginPage.open();
-        LoginPage.clickBottomCookies();
+
 
     }
 
     @Test
     private void PositiveLoginTest() {
-        String expectedText = "Mano paskyra";
+        String expectedText = "elina.cerniavskaja@gmail.com";
         String actualText = "";
 
         String ElPastas = "elina.cerniavskaja@gmail.com";
-        String Slaptazodis = "Elmika85";
+        String Slaptazodis = "GoodPassword44";
 
-
-        LoginPage.enterElPastas(ElPastas);
-        LoginPage.enterSlaptazodis(Slaptazodis);
-        LoginPage.clickBottomPrisijungti();
+        LoginPage.clickLoginButton();
+        LoginPage.enterEmail(ElPastas);
+        LoginPage.enterPassword(Slaptazodis);
+        LoginPage.clickBottomSubmit();
 
 
         actualText = LoginPage.readLoginMessage();
@@ -50,19 +50,18 @@ public class LoginTest extends TestBase {
     }
     @Test
     private void NegativeLoginTest() {
-        String expectedText = "Prisijungti nepavyko. Pasitikrinkite ar teisingai įvedėte prisijungimo duomenis.";
+        String expectedText = "ERROR: The username or password you entered is incorrect. Lost your password?";
         String actualText = "";
 
         String ElPastas = "elina.cerniavskaja@gmail.com";
         String Slaptazodis = "NotPassword";
 
-        LoginPage.enterElPastas(ElPastas);
-        LoginPage.enterSlaptazodis(Slaptazodis);
-        LoginPage.clickBottomPrisijungti();
-
+        LoginPage.clickLoginButton();
+        LoginPage.enterEmail(ElPastas);
+        LoginPage.enterPassword(Slaptazodis);
+        LoginPage.clickBottomSubmit();
         actualText = LoginPage.readLoginMessageError();
 
         Assert.assertEquals(actualText, expectedText);
-
     }
 }
