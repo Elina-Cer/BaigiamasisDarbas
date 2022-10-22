@@ -57,14 +57,4 @@ public class Common {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(8));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
-
-    public static void waitForElementWithChangeColorAfter(By locator, String attributeName, String attributeValue) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(8));
-        wait.until(ExpectedConditions.attributeContains(locator, attributeName, attributeValue));
-    }
-
-    public static void waitForElementWithVisibilityChange(By locator) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(8));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
 }
