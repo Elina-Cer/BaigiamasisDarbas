@@ -10,16 +10,12 @@ public class LoginTest extends TestBase {
 
 
     @BeforeMethod
-    @Override
     public void setUp() {
         LoginPage.open();
-
-
     }
-
     @Test
     private void PositiveLoginTest() {
-        String expectedText = "elina.cerniavskaja@gmail.com";
+        String expectedText = "Mano paskyra";
         String actualText = "";
 
         String ElPastas = "elina.cerniavskaja@gmail.com";
@@ -30,10 +26,9 @@ public class LoginTest extends TestBase {
         LoginPage.enterPassword(Slaptazodis);
         LoginPage.clickBottomSubmit();
 
-
         actualText = LoginPage.readLoginMessage();
 
-        System.out.println( String.format(
+        System.out.println(String.format(
                 "Actual [%s]; Expected [%s]",
                 actualText,
                 expectedText
@@ -63,5 +58,41 @@ public class LoginTest extends TestBase {
         actualText = LoginPage.readLoginMessageError();
 
         Assert.assertEquals(actualText, expectedText);
+    }
+    @Test
+    private void manageAccountTest() {
+        String expectedText = "Paskyros duomenys sėkmingai pakeisti.";
+        String actualText = "";
+
+        String ElPastas = "elina.cerniavskaja@gmail.com";
+        String Slaptazodis = "GoodPassword44";
+        String Name = "Elina";
+        String LastName = "Cerniavskaja";
+
+        LoginPage.clickLoginButton();
+        LoginPage.enterEmail(ElPastas);
+        LoginPage.enterPassword(Slaptazodis);
+        LoginPage.clickBottomSubmit();
+        LoginPage.clickUserInformationButton();
+        LoginPage.enterUserName(Name);
+        LoginPage.enterUserLastName(LastName);
+        LoginPage.clickButtonSubmitNotification();
+
+        actualText = LoginPage.readMessageOfNotification();
+
+        System.out.println(String.format(
+                "Actual [%s]; Expected [%s]",
+                actualText,
+                expectedText
+        ));
+
+        Assert.assertTrue(
+                actualText.contains(expectedText),
+                String.format(
+                        "Actual [%s]; Expected [%s]",
+                        actualText,
+                        expectedText
+                )
+        );
     }
 }

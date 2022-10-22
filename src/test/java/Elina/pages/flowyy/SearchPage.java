@@ -8,31 +8,43 @@ public class SearchPage {
         Common.openUrl("https://flowyy.lt");
     }
 
-    public static void clickSearchButton() {Common.clickElement(Locators.Flowyy.SearchProduct.searchButton);
+    public static void clickSearchButton() {
+        Common.waitForElementToBeClickable(Locators.Flowyy.SearchProduct.searchButton);
+        Common.clickElement(Locators.Flowyy.SearchProduct.searchButton);
     }
 
-    public static void enterProduct(String Product) {Common.sendKeysToElement(Product,
+    public static void enterProduct(String Product) {
+        Common.sendKeysToElement(Product,
                 Locators.Flowyy.SearchProduct.inputProduct);
     }
 
-    public static void clickSearchProduct() {Common.clickElement(
+    public static void clickSearchProduct() {
+        Common.clickElement(
                 Locators.Flowyy.SearchProduct.searchProduct);
     }
 
+    public static void clickSearchResult() {
+        Common.clickElement(Locators.Flowyy.SearchProduct.searchResult);
+    }
+
+    public static String readMessageFromCart() {
+        return Common.getElementText(
+                Locators.Flowyy.SearchProduct.messageFromCart);
+    }
+
     public static void clickOnProductFromMainPage() {
-        Common.clickElement(Locators.Flowyy.SearchProduct.ProductFromMainPage);
+        Common.clickElement(Locators.Flowyy.SearchProduct.productFromMainPage);
     }
 
     public static void clickOnSelectedProductFromMainPage() {
         Common.clickElement(Locators.Flowyy.SearchProduct.selectedProductFromMainPage);
     }
-    public static String readMessageFromCart(){
-        return Common.getElementText(
-    Locators.Flowyy.SearchProduct.MessageFromCart);
-}
-    public static void clickCartBooton(){
-        Common.clickElement(Locators.Flowyy.SearchProduct.cartButon);
+
+    public static void clickCartButton() {
+        Common.clickElement(Locators.Flowyy.SearchProduct.cartButton);
     }
+
 }
+
 
 

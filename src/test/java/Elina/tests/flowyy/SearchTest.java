@@ -14,16 +14,31 @@ public class SearchTest extends TestBase {
     public void setUp() {
         LoginPage.open();
     }
-
     @Test
     private void searchProductTest() {
-        String expectedText = "";
+        String expectedText = "Brazil Santos";
         String actualText = "";
-        String Product = "kava";
+        String Product = "Brazil Santos";
 
         SearchPage.clickSearchButton();
         SearchPage.enterProduct(Product);
         SearchPage.clickSearchProduct();
+        actualText = SearchPage.readMessageFromCart();
+
+        System.out.println( String.format(
+                "Actual [%s]; Expected [%s]",
+                actualText,
+                expectedText
+        ));
+
+        Assert.assertTrue(
+                actualText.contains(expectedText),
+                String.format(
+                        "Actual [%s]; Expected [%s]",
+                        actualText,
+                        expectedText
+                )
+        );
     }
 
 @Test
@@ -31,10 +46,9 @@ public class SearchTest extends TestBase {
     String expectedText = "“Raffaello” - įdėtas į krepšelį";
     String actualText = "";
 
-
     SearchPage.clickOnProductFromMainPage();
     SearchPage.clickOnSelectedProductFromMainPage();
-    SearchPage.clickCartBooton();
+    SearchPage.clickCartButton();
     SearchPage.readMessageFromCart();
     actualText = SearchPage.readMessageFromCart();
 
@@ -54,7 +68,7 @@ public class SearchTest extends TestBase {
         LoginPage.clickBottomSubmit();
         SearchPage.clickOnProductFromMainPage();
         SearchPage.clickOnSelectedProductFromMainPage();
-        SearchPage.clickCartBooton();
+        SearchPage.clickCartButton();
         SearchPage.readMessageFromCart();
         actualText = SearchPage.readMessageFromCart();
 

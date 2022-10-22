@@ -2,7 +2,6 @@ package Elina.pages.flowyy;
 
 import Elina.pages.Common;
 import Elina.pages.Locators;
-import org.openqa.selenium.By;
 
 public class LoginPage {
     public static void open() {
@@ -12,9 +11,11 @@ public class LoginPage {
     public static void sleep(int millis) {
         Common.sleep(millis);
     }
+
     public static void clickLoginButton() {
         Common.clickElement(Locators.Flowyy.Login.logInButton);
     }
+
     public static void enterEmail(String ElPastas) {
         Common.sendKeysToElement(
                 ElPastas,
@@ -34,23 +35,41 @@ public class LoginPage {
                 Locators.Flowyy.Login.buttonSubmit);
     }
 
-//    public static void clickBottomCookies() {
-//
-//        try {
-//            Common.waitForElementWithVisibilityChange(Locators.Flowyy.Login.cookiesAccept);
-//            Common.clickElement(Locators.Flowyy.Login.cookiesAccept);
-//        } catch (Exception e) {
-//            System.out.println("UUUUPPPPSSS!");
-//        }
-//
-//    }
-
     public static String readLoginMessage() {
         return Common.getElementText(
                 Locators.Flowyy.Login.headerManoPaskyra);
     }
+
     public static String readLoginMessageError() {
         return Common.getElementText(
                 Locators.Flowyy.Login.loginError);
+    }
+
+    public static void clickUserInformationButton() {
+        Common.clickElement(
+                Locators.Flowyy.Login.userInformation);
+    }
+
+    public static void enterUserName(String Name) {
+        Common.sendKeysToElement(
+                Name,
+                Locators.Flowyy.Login.inputUserName);
+
+    }
+
+    public static void enterUserLastName(String LastName) {
+        Common.sendKeysToElement(
+                LastName,
+                Locators.Flowyy.Login.inputUserLastName);
+    }
+
+    public static void clickButtonSubmitNotification() {
+        Common.clickElement(
+                Locators.Flowyy.Login.buttonSubmitNotification);
+    }
+
+    public static String readMessageOfNotification() {
+        return Common.getElementText(
+                Locators.Flowyy.Login.messageOfNotification);
     }
 }
